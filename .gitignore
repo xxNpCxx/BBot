@@ -1,0 +1,4 @@
+.env
+/docker/mongodb/data/
+*.log
+.idea
