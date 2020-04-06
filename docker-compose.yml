@@ -45,6 +45,8 @@ services:
       dockerfile: Dockerfile
     container_name: ${PROJECT_NAME}_php_data_collector
     working_dir: /home/docker
+    volumes:
+      - ./:${PHP_DATA_COLLECTOR_APP_DIR}:rw
     networks:
       - gg
     depends_on:
