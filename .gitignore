@@ -2,3 +2,4 @@
 /docker/mongodb/data/
 *.log
 .idea
+/vendor/
