@@ -7,7 +7,6 @@ networks:
     driver: bridge
 
 services:
-
   mongodb:
     container_name: ${PROJECT_NAME}_mongodb                   # название контейнера
     image: mvertes/alpine-mongo:4.0.6-1                       # имя образа
@@ -44,9 +43,9 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: ${PROJECT_NAME}_php_data_collector
-    working_dir: /home/docker
+    working_dir: /app
     volumes:
-      - ./:${PHP_DATA_COLLECTOR_APP_DIR}:rw
+      - ./app:${PHP_DATA_COLLECTOR_APP_DIR}:rw
     networks:
       - gg
     depends_on:
