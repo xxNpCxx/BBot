@@ -14,4 +14,7 @@ RUN addgroup --gid 1000 $DOCKER_GROUP && \
 
 RUN apk add bash
 
+#install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 USER $DOCKER_USER
