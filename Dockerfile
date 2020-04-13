@@ -1,4 +1,4 @@
-FROM php:7.4.3-fpm-alpine AS php
+FROM php:7.2-fpm-alpine AS php
 
 ARG DOCKER_USER='docker'
 ARG DOCKER_GROUP='docker'
@@ -12,9 +12,17 @@ RUN addgroup --gid 1000 $DOCKER_GROUP && \
             --disabled-password \
             --gecos "" $DOCKER_USER
 
-RUN apk add bash
+RUN apk add bash && \
+    apk add git
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN docker-php-ext-install sockets
+
+RUN apk add autoconf gcc libzmq zeromq-dev zeromq coreutils build-base && \
+    pecl install zmq-beta
+
+RUN docker-php-ext-enable zmq
 
 USER $DOCKER_USER
