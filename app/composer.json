@@ -8,9 +8,10 @@
         }
     ],
     "autoload": {
-        "psr-4": {"B-bot\\": "app/src/"}
+        "psr-4": {"BBot\\": "src/"}
     },
     "require": {
+        "hemiframe/php-websocket": "^1.7",
         "ratchet/pawl": "^0.3.4"
     }
 }
