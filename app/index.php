@@ -20,9 +20,9 @@ require __DIR__ . '/vendor/autoload.php';
 //exchange
 //pair
 //type
-$client = (new Client(
+$client = new Client(
     'mongodb://root:ggg12345678ggg@mongodb:27017'
-));
+);
 
 try {
     $dbs = $client->listDatabases();
