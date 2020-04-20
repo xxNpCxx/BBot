@@ -12,6 +12,7 @@
     },
     "require": {
         "hemiframe/php-websocket": "^1.7",
-        "ratchet/pawl": "^0.3.4"
+        "ratchet/pawl": "^0.3.4",
+        "mongodb/mongodb": "^1.6"
     }
 }
