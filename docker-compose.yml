@@ -1,16 +1,16 @@
 version: '3'
 
 networks:
-  gg:
-    driver: bridge
-  webmongo:
+  mongonetwork:
     driver: bridge
 
 services:
   mongodb:
     container_name: ${PROJECT_NAME}_mongodb                   # название контейнера
-    image: mvertes/alpine-mongo:4.0.6-1                       # имя образа
-    restart: unless-stopped                                   # перезапуск если остановлено
+    build:
+      context: ./                       # имя образа
+      dockerfile: mongodb.Dockerfile
+                                       # перезапуск если остановлено
     environment:                                              # переменные окружения
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_NAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASS}
@@ -20,18 +20,17 @@ services:
       - ./docker/mongodb/data:${MONGODB_DATA_DIR}
       - ./docker/logs/mongodb:${MONDODB_LOG_DIR}
     networks:
-      - gg
-      - webmongo
+      - mongonetwork
   webmongo:
     container_name: ${PROJECT_NAME}_webmongo
     image: mongo-express
     networks:
-      - webmongo
+      - mongonetwork
     ports:
     - 8081:8081
     environment:                                              # переменные окружения
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
-      ME_CONFIG_MONGODB_SERVER: ${PROJECT_NAME}_mongodb
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'false'
+      ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_BASICAUTH_USERNAME: ${MONGODB_ROOT_NAME}
       ME_CONFIG_BASICAUTH_PASSWORD: ${MONGODB_ROOT_PASS}
       ME_CONFIG_MONGODB_ADMINUSERNAME: 'admin'
@@ -47,6 +46,6 @@ services:
     volumes:
       - ./app:${PHP_DATA_COLLECTOR_APP_DIR}:rw
     networks:
-      - gg
+      - mongonetwork
     depends_on:
-      - mongodb
+      - webmongo
