@@ -21,7 +21,7 @@ RUN git clone https://github.com/mongodb/mongo-php-driver.git && \
     make all && \
     make install
 
-RUN openssl-devel
+RUN apk add openssl-dev
 
 pecl install mongodb
 echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
