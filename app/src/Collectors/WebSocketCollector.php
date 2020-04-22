@@ -61,6 +61,19 @@ class WebSocketCollector
         $connector($this->getEndpoint(),$subprotocols, $headers)
             ->then(function (WebSocket $conn) {
                 $conn->on('message', function (MessageInterface $msg) use ($conn) {
+                    $client = new \MongoDB\Client(
+                        'mongodb://mongodb:27017',
+                        ['ssl' => false]
+                    );
+
+                    $key = $this->mainSymbol . $this->quoteSymbol;
+                    $collection = $client->selectCollection('local', 'binance');
+                    $collection->insertOne(
+                        [
+                            $key => json_decode($msg, true)
+                        ]
+                    );
+
                     echo "message: {$msg}\n";
                 });
 
@@ -75,7 +88,6 @@ class WebSocketCollector
                     echo "Connection closed ({$code} - {$reason})\n";
                 });
 
-//                $conn->send('Hello World!');
             }, function (Exception $e) use ($loop) {
                 echo "Could not connect: {$e->getMessage()}\n";
                 $loop->stop();
