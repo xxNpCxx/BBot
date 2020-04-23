@@ -3,6 +3,8 @@ version: '3'
 networks:
   mongonetwork:
     driver: bridge
+  zeromqnetwork:
+    driver: bridge
 
 services:
   mongodb:
@@ -47,5 +49,6 @@ services:
       - ./app:${PHP_DATA_COLLECTOR_APP_DIR}:rw
     networks:
       - mongonetwork
+      - zeromqnetwork
     depends_on:
       - webmongo

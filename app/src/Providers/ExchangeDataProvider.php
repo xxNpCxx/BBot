@@ -10,6 +10,10 @@ use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use React\EventLoop\Factory;
+use ZMQ;
+use ZMQContext;
+use ZMQSocket;
+use function json_decode;
 use function strtolower;
 
 class ExchangeDataProvider
@@ -24,12 +28,23 @@ class ExchangeDataProvider
     private $quoteSymbol;
     private $type;
 
+    private $publisher;
+
+    private $exchange;
+
+    private $mongoClient;
     public function __construct(string $type, string $mainSymbol = null, string $quoteSymbol = null )
     {
+        $this->publisher = new TCPSocketPublisher();
         $this->type = $type;
         $this->mainSymbol = $mainSymbol;
         $this->quoteSymbol = $quoteSymbol;
         $this->setEndpoint();
+
+        $this->mongoClient = new Client(
+            'mongodb://mongodb:27017',
+            ['ssl' => false]
+        );
     }
 
     public function setEndpoint(): void
@@ -61,20 +76,7 @@ class ExchangeDataProvider
         $connector($this->getEndpoint(),$subprotocols, $headers)
             ->then(function (WebSocket $conn) {
                 $conn->on('message', function (MessageInterface $msg) use ($conn) {
-                    $client = new Client(
-                        'mongodb://mongodb:27017',
-                        ['ssl' => false]
-                    );
-
-                    $key = $this->mainSymbol . $this->quoteSymbol;
-                    $collection = $client->selectCollection('local', 'binance');
-                    $collection->insertOne(
-                        [
-                            $key => json_decode($msg, true)
-                        ]
-                    );
-
-                    echo "message: {$msg}\n";
+                    $this->publisher->send('Y',$msg);
                 });
 
                 $conn->on('error', function (MessageInterface $msg) use ($conn) {
