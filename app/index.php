@@ -1,6 +1,6 @@
 <?php
 
-use BBot\Collectors\WebSocketCollector;
+use BBot\Providers\ExchangeDataProvider;
 
 
 ini_set("default_socket_timeout", 1);
@@ -15,6 +15,6 @@ foreach ($argv as $arg) {
 }
 
 
-$collector = new WebSocketCollector($type, $mainSymbol, $quoteSymbol);
+$collector = new ExchangeDataProvider($type, $mainSymbol, $quoteSymbol);
 $collector->run();
 

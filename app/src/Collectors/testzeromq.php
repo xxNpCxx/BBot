@@ -11,7 +11,7 @@ use ZMQSocket;
 class testzeromq
 {
     /**
-     * testzeromq constructor.
+     * testzeromq constructor. client
      * @throws \ZMQSocketException
      */
     public function __construct()
@@ -22,5 +22,14 @@ class testzeromq
         $message = $subscriber->recv();
         print_r($message);
         $subscriber->disconnect('ws://stream.binance.com:9443/ws/ethbtc@bookTicker');
+    }
+
+
+
+    public function startServer()
+    {
+        $context = new ZMQContext();
+        $publisher = new ZMQSocket($context, ZMQ::SOCKET_PUB);
+        $publisher->bind("tcp://*:5563");
     }
 }

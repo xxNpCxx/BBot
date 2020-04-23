@@ -1,18 +1,18 @@
 <?php
 
 
-namespace BBot\Collectors;
+namespace BBot\Providers;
 
 
 use Exception;
+use MongoDB\Client;
 use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use React\EventLoop\Factory;
-use function json_encode;
 use function strtolower;
 
-class WebSocketCollector
+class ExchangeDataProvider
 {
     private const WS_URL = 'stream.binance.com';
     private const WS_PORT = 9443;
@@ -61,7 +61,7 @@ class WebSocketCollector
         $connector($this->getEndpoint(),$subprotocols, $headers)
             ->then(function (WebSocket $conn) {
                 $conn->on('message', function (MessageInterface $msg) use ($conn) {
-                    $client = new \MongoDB\Client(
+                    $client = new Client(
                         'mongodb://mongodb:27017',
                         ['ssl' => false]
                     );
