@@ -1,13 +1,12 @@
 <?php
 
-use BBot\Collectors\MongoCollector;
+use BBot\Providers\ExchangeDataProvider;
 
 ini_set("default_socket_timeout", 1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-echo "\n\r\n Usage php collector.php exchange=binance mainSymbol=btc quoteSymbol=usdt type=bookTicker \n\r\n";
-
+echo "\n\r\n Usage php provider.php exchange=binance mainSymbol=btc quoteSymbol=usdt type=bookTicker \n\r\n";
 
 foreach ($argv as $arg) {
     [$key, $value] = explode('=',$arg);
@@ -27,5 +26,8 @@ $endpoint = sprintf(
     $type
 );
 
-$collector = new MongoCollector($endpoint,$type);
-$collector->listen();
+
+
+$exchangeDataProvider = new ExchangeDataProvider($endpoint, $type, $mainSymbol, $quoteSymbol);
+$exchangeDataProvider->run();
+

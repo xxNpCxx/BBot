@@ -4,6 +4,8 @@
 namespace BBot\Providers;
 
 
+use BBot\Collectors\TCPSocketSubscriber;
+use BBot\TCPSocketRoutes;
 use Exception;
 use MongoDB\Client;
 use Ratchet\Client\Connector;
@@ -14,6 +16,8 @@ use ZMQ;
 use ZMQContext;
 use ZMQSocket;
 use function json_decode;
+use function json_encode;
+use function print_r;
 use function strtolower;
 
 class ExchangeDataProvider
@@ -23,28 +27,18 @@ class ExchangeDataProvider
     private const WSPROTOCOL = 'wss';
 
     private $endpoint;
-
     private $mainSymbol;
     private $quoteSymbol;
     private $type;
-
     private $publisher;
 
-    private $exchange;
-
-    private $mongoClient;
-    public function __construct(string $type, string $mainSymbol = null, string $quoteSymbol = null )
+    public function __construct(string $endpoint, string $type, string $mainSymbol = null, string $quoteSymbol = null )
     {
-        $this->publisher = new TCPSocketPublisher();
+        $this->publisher = new TCPSocketPublisher($endpoint);
         $this->type = $type;
         $this->mainSymbol = $mainSymbol;
         $this->quoteSymbol = $quoteSymbol;
         $this->setEndpoint();
-
-        $this->mongoClient = new Client(
-            'mongodb://mongodb:27017',
-            ['ssl' => false]
-        );
     }
 
     public function setEndpoint(): void
@@ -53,8 +47,6 @@ class ExchangeDataProvider
     }
     public function getEndpoint(): string
     {
-        print_r($this->endpoint);
-        echo(PHP_EOL);
         return $this->endpoint;
     }
 
@@ -63,6 +55,8 @@ class ExchangeDataProvider
      */
     public function run()
     {
+
+        printf('collect data from [%s] %s', $this->getEndpoint(), PHP_EOL);
 
         $loop = Factory::create();
         $reactConnector = new \React\Socket\Connector($loop, [
@@ -76,7 +70,7 @@ class ExchangeDataProvider
         $connector($this->getEndpoint(),$subprotocols, $headers)
             ->then(function (WebSocket $conn) {
                 $conn->on('message', function (MessageInterface $msg) use ($conn) {
-                    $this->publisher->send('Y',$msg);
+                    $this->publisher->send($msg,TCPSocketRoutes::ROUTE_ALL);
                 });
 
                 $conn->on('error', function (MessageInterface $msg) use ($conn) {

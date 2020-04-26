@@ -4,21 +4,54 @@
 namespace BBot\Collectors;
 
 
-class MongoCollector
+use MongoDB\Client;
+use MongoDB\Collection;
+use function json_decode;
+use function printf;
+
+class MongoCollector extends TCPSocketSubscriber
 {
-    public function __construct()
+    const DEFAULT_STORAGE_DSN = 'mongodb://mongodb:27017';
+    const DEFAULT_MONGO_DATABASE = 'local';
+    const DEFAULT_MONGO_COLLECTION = 'binance-price';
+
+    /**
+     * @var Client
+     */
+    private $storageClient;
+    private $dbName;
+    private $collectionName;
+    /**
+     * @var Collection
+     */
+    private $collection;
+
+    private $collectingIdentityName;
+
+    protected function onDataReceived(string $data)
     {
+        $jsonData = json_decode($data);
+        $this->collection->insertOne([$this->collectingIdentityName => $jsonData]);
+        printf('.');
+    }
+
+    public function __construct(string $dataProviderEndpoint, string $collectingIdentityName = null)
+    {
+        parent::__construct($dataProviderEndpoint);
+
+        $this->dbName = self::DEFAULT_MONGO_DATABASE;
+        $this->collectionName = self::DEFAULT_MONGO_COLLECTION;
+
+        $this->collectingIdentityName = $collectingIdentityName;
+        $this->connectToStorage();
+        $this->collection = $this->storageClient->selectCollection($this->dbName, $this->collectionName);
 
     }
 
-    public function collect()
+    private function connectToStorage(string $dsn = self::DEFAULT_STORAGE_DSN, array $options = []): bool
     {
-//                    $key = $this->mainSymbol . $this->quoteSymbol;
-//                    $collection = $this->mongoClient->selectCollection('local', 'binance');
-//                    $collection->insertOne(
-//                        [
-//                            $key => $jsonMessage
-//                        ]
-//                    );
+        $this->storageClient = new Client($dsn, $options);
+        return true;
     }
+
 }

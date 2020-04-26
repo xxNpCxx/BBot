@@ -4,6 +4,7 @@
 namespace BBot\Providers;
 
 
+use BBot\TCPSocketRoutes;
 use ZMQ;
 use ZMQContext;
 use ZMQSocket;
@@ -11,33 +12,38 @@ use function printf;
 
 class TCPSocketPublisher
 {
-    const DEFAULT_IP = '*';
-    const DEFAULT_PORT = 5563;
-
     /**
      * @var ZMQSocket
      */
     private $publisher;
+    private $endpoint;
 
-    public function __construct($ip = self::DEFAULT_IP, $port=self::DEFAULT_PORT)
+    public function __construct(string $endpoint)
     {
-        $this->port = $port;
-        $this->ip = $ip;
+        $this->endpoint = $endpoint;
 
         $this->startServer();
+
+        printf('Binded to [%s] %s', $this->endpoint, PHP_EOL);
     }
 
     /**
      * Отправляет по маршруту $route данные $data
      * $route нужен для фильтрации отправляемых данных.
+     * Если маршрут установлен в значение TCPSocketRoutes::ROUTE_ALL
+     * тогда данные отправляются в одном сообщении. Иначе сперва отправляется
+     * route затем данные.
      *
-     * @param string $route
      * @param string $data
+     * @param string $route
      * @throws \ZMQSocketException
      */
-    public function send(string $route, string $data)
+    public function send(string $data, string $route = TCPSocketRoutes::ROUTE_ALL)
     {
-        $this->publisher->send($route,ZMQ::MODE_SNDMORE);
+
+//        if($route !== TCPSocketRoutes::ROUTE_ALL){
+            $this->publisher->send($route,ZMQ::MODE_SNDMORE);
+//        }
         $this->publisher->send($data,ZMQ::MODE_DONTWAIT);
     }
 
@@ -45,8 +51,7 @@ class TCPSocketPublisher
     {
         $context = new ZMQContext();
         $this->publisher = new ZMQSocket($context, ZMQ::SOCKET_PUB);
-        $endpoint = printf('tcp://%s:%s',$this->ip, $this->port);
-        $this->publisher->bind($endpoint);
+        $this->publisher->bind($this->endpoint);
     }
 
 }
