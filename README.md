@@ -1,13 +1,12 @@
 # BBot
 
-clone
+`cp .env.dev .env`
 
-cp .env.dev .env
+modify `vi .env`
 
-modify .env
+run `docker-compose build`
 
-run docker-compose build
-run docker-compose up -d
+run `docker-compose up -d`
 
 use followings endpoints to check works
 
