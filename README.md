@@ -13,7 +13,7 @@ use followings endpoints to check works
 
 http://localhost:8081  // Веб субд для mongodb
 
-
+```
 binance:{                                              //Биржа коллекция в монге
     "USDTBTC":{                                        //Пара
         "p":{                                          //Структура изменения цены в реальном времени
@@ -41,5 +41,16 @@ binance:{                                              //Биржа коллек
         "t":{ // 1 покупатель 1 продавец. 1 конкретная сделка.
            //https://binance-docs.github.io/apidocs/spot/en/#trade-streams
         }
-
 }
+```
+
+
+
+```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance```
+```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance```
+- 
+```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance```
+```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance```
+-
+```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance```
+```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance```
