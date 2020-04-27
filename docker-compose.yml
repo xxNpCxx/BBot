@@ -52,3 +52,16 @@ services:
       - zeromqnetwork
     depends_on:
       - webmongo
+  miniconda:
+    container_name: miniconda
+    hostname: miniconda
+    image: continuumio/miniconda3
+    command: /bin/bash -c "pip install pymongo && /opt/conda/bin/conda install jupyter -y --quiet && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser  --allow-root"
+    ports:
+      - 8888:8888
+    env_file:
+      - miniconda-docker-compose.env
+    volumes:
+      - ./notebooks:/opt/notebooks
+    networks:
+      - mongonetwork
