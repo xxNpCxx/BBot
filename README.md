@@ -46,11 +46,23 @@ binance:{                                              //Биржа коллек
 
 
 
-```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance```
-```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance```
+```bash
+php collector.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance
+```
+```bash
+php provider.php type=bookTicker mainSymbol=btc quoteSymbol=xrp exchange=binance
+```
 - 
-```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance```
-```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance```
+```bash
+php collector.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance
+```
+```bash
+php provider.php type=bookTicker mainSymbol=btc quoteSymbol=eos exchange=binance
+```
 -
-```bash php collector.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance```
-```bash php provider.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance```
+```bash
+php collector.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance
+```
+```bash
+php provider.php type=bookTicker mainSymbol=btc quoteSymbol=matic exchange=binance
+```
