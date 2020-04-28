@@ -10,6 +10,10 @@
 
 `docker-compose up -d` // Запускаем контейнеры в фоне
 
+`docker-compose exec php_data_collector bash` // Заходим внутрь контейнера (alpine)
+
+`composer install` // Выполняем установку зависимостей
+
 http://localhost:8081  // Проверяем доступность веб интерфейса для работы с хранилицем mongodb
 
 # **Инструкция по работе**
