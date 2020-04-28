@@ -2,17 +2,15 @@
 
 # **Инструкция по установке**
 
-`cp .env.dev .env`
+`cp .env.dev .env` // Копируем себе файл окружения
 
-modify `vi .env`
+`vi .env` // Редактируем файл окружения
 
-run `docker-compose build`
+`docker-compose build` // Запускаем билд контейнеров
 
-run `docker-compose up -d`
+`docker-compose up -d` // Запускаем контейнеры в фоне
 
-use followings endpoints to check works
-
-http://localhost:8081  // Веб субд для mongodb
+http://localhost:8081  // Проверяем доступность веб интерфейса для работы с хранилицем mongodb
 
 # **Инструкция по работе**
 
