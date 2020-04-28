@@ -2,23 +2,39 @@
 
 # **Инструкция по установке**
 
-`git clone https://github.com/xxNpCxx/BBot.git` // Клонируем себе репозиторий
+Клонируем себе репозиторий:
 
-`cd BBot` // Переходим в папку с только что склонированным проектом
+`git clone https://github.com/xxNpCxx/BBot.git` 
 
-`cp .env.dev .env` // Создаем файл окружения .env на основе .env.dev
+Переходим в папку с только что склонированным проектом
 
-`vi .env` // Редактируем файл окружения
+`cd BBot`
 
-`docker-compose build` // Запускаем билд контейнеров
+Создаем файл окружения .env на основе .env.dev
 
-`docker-compose up -d` // Запускаем контейнеры в фоне
+`cp .env.dev .env`
 
-`docker-compose exec php_data_collector bash` // Заходим внутрь контейнера (alpine)
+Редактируем файл окружения
 
-`composer install` // Выполняем установку зависимостей
+`vi .env`
 
-http://localhost:8081  // Проверяем доступность веб интерфейса для работы с хранилицем mongodb
+ Запускаем билд контейнеров
+ 
+`docker-compose build`
+
+Запускаем контейнеры в фоне
+
+`docker-compose up -d`
+
+Заходим внутрь контейнера (alpine)
+
+`docker-compose exec php_data_collector bash`
+
+Выполняем установку зависимостей
+
+`composer install`
+
+Проверяем доступность веб интерфейса для работы с хранилицем mongodb http://localhost:8081
 
 # **Инструкция по работе**
 
