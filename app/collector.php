@@ -19,7 +19,7 @@ foreach ($argv as $arg) {
 /** @var string $quoteSymbol */
 /** @var string $type */
 
-$endpoint = sprintf(
+$providerEndpoint = sprintf(
     'ipc://%s-%s-%s-%s.ipc',
     $exchange,
     $mainSymbol,
@@ -27,5 +27,12 @@ $endpoint = sprintf(
     $type
 );
 
-$collector = new MongoCollector($endpoint,$type);
+$collectedItemInfo = [
+    'exchange' => $exchange,
+    'mainSymbol' => $mainSymbol,
+    'quoteSymbol' => $quoteSymbol,
+    'type' => $type
+];
+
+$collector = new MongoCollector($providerEndpoint, $collectedItemInfo);
 $collector->listen();
