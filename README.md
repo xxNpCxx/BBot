@@ -43,7 +43,7 @@ php collector.php type=bookTicker mainSymbol=matic quoteSymbol=btc exchange=bina
 php provider.php type=bookTicker mainSymbol=matic quoteSymbol=btc exchange=binance
 ```
 
-#### **Примеры коллекций сохраняемых в хранилище mongodb** :
+## **Примеры коллекций сохраняемых в хранилище mongodb** :
 
 Коллекция [**binance_bookTicker_xrpbtc**] :
 ```json
