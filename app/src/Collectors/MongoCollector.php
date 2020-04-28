@@ -4,15 +4,15 @@
 namespace BBot\Collectors;
 
 
+use BBot\ZMQSubscriber;
 use MongoDB\Client;
 use MongoDB\Collection;
 use function json_decode;
 use function microtime;
 use function printf;
 use function sprintf;
-use function strtolower;
 
-class MongoCollector extends TCPSocketSubscriber
+class MongoCollector extends ZMQSubscriber
 {
     const DEFAULT_STORAGE_DSN = 'mongodb://mongodb:27017';
     const DEFAULT_MONGO_DATABASE = 'local';

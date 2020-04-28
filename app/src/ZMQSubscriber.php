@@ -1,7 +1,7 @@
 <?php
 
 
-namespace BBot\Collectors;
+namespace BBot;
 
 
 use BBot\TCPSocketRoutes;
@@ -13,13 +13,12 @@ use function printf as printfAlias;
 use function sprintf;
 use function usort;
 
-class TCPSocketSubscriber
+abstract class ZMQSubscriber
 {
     private $context;
     private $subscriber;
     private $route;
     private $endpoint;
-    private $cb;
 
 
     protected function onDataReceived(string $data)

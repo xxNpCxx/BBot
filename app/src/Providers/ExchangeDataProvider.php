@@ -4,20 +4,13 @@
 namespace BBot\Providers;
 
 
-use BBot\Collectors\TCPSocketSubscriber;
+use BBot\ZMQPublisher;
 use BBot\TCPSocketRoutes;
 use Exception;
-use MongoDB\Client;
 use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use React\EventLoop\Factory;
-use ZMQ;
-use ZMQContext;
-use ZMQSocket;
-use function json_decode;
-use function json_encode;
-use function print_r;
 use function strtolower;
 
 class ExchangeDataProvider
@@ -34,7 +27,7 @@ class ExchangeDataProvider
 
     public function __construct(string $endpoint, string $type, string $mainSymbol = null, string $quoteSymbol = null )
     {
-        $this->publisher = new TCPSocketPublisher($endpoint);
+        $this->publisher = new ZMQPublisher($endpoint);
         $this->type = $type;
         $this->mainSymbol = $mainSymbol;
         $this->quoteSymbol = $quoteSymbol;

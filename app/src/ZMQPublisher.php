@@ -1,16 +1,14 @@
 <?php
 
 
-namespace BBot\Providers;
+namespace BBot;
 
-
-use BBot\TCPSocketRoutes;
 use ZMQ;
 use ZMQContext;
 use ZMQSocket;
 use function printf;
 
-class TCPSocketPublisher
+abstract class ZMQPublisher
 {
     /**
      * @var ZMQSocket
@@ -40,10 +38,7 @@ class TCPSocketPublisher
      */
     public function send(string $data, string $route = TCPSocketRoutes::ROUTE_ALL)
     {
-
-//        if($route !== TCPSocketRoutes::ROUTE_ALL){
-            $this->publisher->send($route,ZMQ::MODE_SNDMORE);
-//        }
+        $this->publisher->send($route,ZMQ::MODE_SNDMORE);
         $this->publisher->send($data,ZMQ::MODE_DONTWAIT);
     }
 
