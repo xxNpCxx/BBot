@@ -11,10 +11,14 @@ use Ratchet\Client\Connector;
 use Ratchet\Client\WebSocket;
 use Ratchet\RFC6455\Messaging\MessageInterface;
 use React\EventLoop\Factory;
+use function json_decode;
+use function json_encode;
 use function strtolower;
 
 class ExchangeDataProvider
 {
+    //TODO: Реализовать возможность из одного провайдера получать больше одного типа данных с биржи
+
     private const WS_URL = 'stream.binance.com';
     private const WS_PORT = 9443;
     private const WSPROTOCOL = 'wss';
@@ -24,6 +28,12 @@ class ExchangeDataProvider
     private $quoteSymbol;
     private $type;
     private $publisher;
+    private $lastReceivedDataValue = [
+        TCPSocketRoutes::ROUTE_BEST_ASK_PRICE => null,
+        TCPSocketRoutes::ROUTE_BEST_ASK_QTY => null,
+        TCPSocketRoutes::ROUTE_BEST_BID_PRICE => null,
+        TCPSocketRoutes::ROUTE_BEST_BID_QTY => null,
+    ];
 
     public function __construct(string $endpoint, string $type, string $mainSymbol = null, string $quoteSymbol = null )
     {
@@ -48,6 +58,7 @@ class ExchangeDataProvider
      */
     public function run()
     {
+        //TODO: Перенести ответственность за обработку соединений с биржей по сокетам в отдельные классы
 
         printf('collect data from [%s] %s', $this->getEndpoint(), PHP_EOL);
 
@@ -63,7 +74,7 @@ class ExchangeDataProvider
         $connector($this->getEndpoint(),$subprotocols, $headers)
             ->then(function (WebSocket $conn) {
                 $conn->on('message', function (MessageInterface $msg) use ($conn) {
-                    $this->publisher->send($msg,TCPSocketRoutes::ROUTE_ALL);
+                    $this->processIncomingMessage($msg);
                 });
 
                 $conn->on('error', function (MessageInterface $msg) use ($conn) {
@@ -83,6 +94,23 @@ class ExchangeDataProvider
             });
 
         $loop->run();
+    }
+
+    private function processIncomingMessage(MessageInterface $msg)
+    {
+        $incomingMessageArray = json_decode($msg,true);
+        foreach ($this->lastReceivedDataValue as $key => $lastValue)
+        {
+            //TODO: Перенести ответственность за обработку данных в отдельные классы например
+
+            $incomingMessageItemValue = $incomingMessageArray[$key];
+
+            if($lastValue !== $incomingMessageItemValue){
+                $this->lastReceivedDataValue[$key] = $incomingMessageItemValue;
+                $this->publisher->send($incomingMessageItemValue, $key);
+            }
+        }
+
     }
 
 }
