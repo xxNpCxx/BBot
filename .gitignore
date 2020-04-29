@@ -5,3 +5,4 @@
 /app/vendor/
 /vendor
 miniconda-docker-compose.env
+app/composer.lock
