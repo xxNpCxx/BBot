@@ -54,6 +54,15 @@ php indicator.php type=bookTicker mainSymbol=xrp quoteSymbol=btc exchange=binanc
 php provider.php type=bookTicker mainSymbol=xrp quoteSymbol=btc exchange=binance
 ```
 
+## **Транслируемая информация из провайдеров**
+```php
+    const ROUTE_BEST_BID_PRICE = 'b';
+    const ROUTE_BEST_BID_QTY = 'B';
+    const ROUTE_BEST_ASK_PRICE = 'a';
+    const ROUTE_BEST_ASK_QTY = 'A';
+    //В разработке
+```
+
 ## **Примеры коллекций сохраняемых в хранилище mongodb** :
 
 Коллекция [**binance_bookTicker_xrpbtc**] :
