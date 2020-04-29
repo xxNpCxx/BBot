@@ -25,3 +25,6 @@ RUN apk add openssl-dev
 
 RUN pecl install mongodb && \
 echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
+
+RUN pecl install ds && \
+echo "extension=ds.so" >> /usr/local/etc/php/conf.d/ds.ini
