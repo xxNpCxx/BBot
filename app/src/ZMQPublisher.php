@@ -8,7 +8,7 @@ use ZMQContext;
 use ZMQSocket;
 use function printf;
 
-abstract class ZMQPublisher
+class ZMQPublisher
 {
     /**
      * @var ZMQSocket
