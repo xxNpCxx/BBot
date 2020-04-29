@@ -42,27 +42,16 @@
 
 - Коллектор служит для сохранения полученных данных из ipc сокета в хранилище ( покачто это mongodb )
 
-- Индикатор ( в разработке )
+- Индикатор нужен для того чтобы посылать события о состоянии условий индикатора связанного со стратегией
 
 ```bash
 php collector.php type=bookTicker mainSymbol=xrp quoteSymbol=btc exchange=binance
 ```
 ```bash
+php indicator.php type=bookTicker mainSymbol=xrp quoteSymbol=btc exchange=binance
+```
+```bash
 php provider.php type=bookTicker mainSymbol=xrp quoteSymbol=btc exchange=binance
-```
---
-```bash
-php collector.php type=bookTicker mainSymbol=eos quoteSymbol=btc exchange=binance
-```
-```bash
-php provider.php type=bookTicker mainSymbol=eos quoteSymbol=btc exchange=binance
-```
---
-```bash
-php collector.php type=bookTicker mainSymbol=matic quoteSymbol=btc exchange=binance
-```
-```bash
-php provider.php type=bookTicker mainSymbol=matic quoteSymbol=btc exchange=binance
 ```
 
 ## **Примеры коллекций сохраняемых в хранилище mongodb** :
