@@ -108,6 +108,7 @@ class ExchangeDataProvider
             if($lastValue !== $incomingMessageItemValue){
                 $this->lastReceivedDataValue[$key] = $incomingMessageItemValue;
                 $this->publisher->send($incomingMessageItemValue, $key);
+                printf('Send data to [%s] route %s', $key, PHP_EOL);
             }
         }
 
