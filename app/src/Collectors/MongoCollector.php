@@ -4,6 +4,7 @@
 namespace BBot\Collectors;
 
 
+use BBot\TCPSocketRoutes;
 use BBot\ZMQSubscriber;
 use MongoDB\Client;
 use MongoDB\Collection;
@@ -17,43 +18,48 @@ class MongoCollector extends ZMQSubscriber
     const DEFAULT_STORAGE_DSN = 'mongodb://mongodb:27017';
     const DEFAULT_MONGO_DATABASE = 'local';
 
+    const COLLECTED_ROUTES = [
+        TCPSocketRoutes::ROUTE_BEST_BID_PRICE,
+        TCPSocketRoutes::ROUTE_BEST_BID_QTY,
+        TCPSocketRoutes::ROUTE_BEST_ASK_PRICE,
+        TCPSocketRoutes::ROUTE_BEST_ASK_QTY,
+    ];
     /**
      * @var Client
      */
     private $storageClient;
     private $dbName;
-    private $collectionName;
 
     /**
-     * @var Collection
+     * @var Collection[]
      */
-    private $collection;
+    private $preparedCollections;
 
     /**
      * @var array
      */
     private $collectedItemInfo;
 
-    protected function onDataReceived(string $data)
+    protected function onDataReceived(string $route, string $data)
     {
         $preparedDocument = $this->prepareDocumentToInsert($data);
-        $this->collection->insertOne($preparedDocument);
+        $this->preparedCollections[$route]->insertOne($preparedDocument);
         printf('.');
     }
 
     public function __construct(string $dataProviderEndpoint, array $collectedItemInfo = [])
     {
-        parent::__construct($dataProviderEndpoint);
+        parent::__construct($dataProviderEndpoint, self::COLLECTED_ROUTES);
         $this->dbName = self::DEFAULT_MONGO_DATABASE;
         $this->collectedItemInfo = $collectedItemInfo;
-        $this->setCollectionName();
         $this->connectToStorage();
-        $this->collection = $this->storageClient->selectCollection($this->dbName, $this->collectionName);
+        $this->prepareCollections();
 
     }
 
     private function prepareDocumentToInsert(string $data)
     {
+
         $jsonData = json_decode($data);
         $document = [
             't' => microtime(true),
@@ -68,20 +74,23 @@ class MongoCollector extends ZMQSubscriber
         return true;
     }
 
-    private function setCollectionName()
+    private function prepareCollections()
     {
         $mainSymbol = $this->collectedItemInfo['mainSymbol'] ?? 'undefinedMainSymbol';
         $quoteSymbol = $this->collectedItemInfo['quoteSymbol'] ?? 'undefinedQuoteSymbol';
         $exchangeName = $this->collectedItemInfo['exchange'] ?? 'undefinedExchange';
         $typeName = $this->collectedItemInfo['type'] ?? 'undefinedType';
 
-        $this->collectionName = sprintf(
-            '%s_%s_%s%s',
-            $exchangeName,
-            $typeName,
-            $mainSymbol,
-            $quoteSymbol
-        );
+        foreach (self::COLLECTED_ROUTES as $route) {
+            $collectionName = sprintf(
+                '%s_%s_%s%s_%s',
+                $exchangeName,
+                $typeName,
+                $mainSymbol,
+                $quoteSymbol,
+                $route
+            );
+            $this->preparedCollections[$route] =  $this->storageClient->selectCollection($this->dbName, $collectionName);
+        }
     }
-
 }
