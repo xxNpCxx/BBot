@@ -28,16 +28,16 @@ class PriceSpreadIndicator extends ZMQSubscriber implements SplSubject
     private $subscribers;
     private $state;
 
-    public function __construct(string $endpointstring, $route = TCPSocketRoutes::ROUTE_BEST_BID_PRICE)
+    public function __construct(string $endpointstring, array $routes = [TCPSocketRoutes::ROUTE_BEST_BID_PRICE])
     {
-        parent::__construct($endpointstring, $route);
+        parent::__construct($endpointstring, $routes);
         $this->state = false;
         $this->subscribers = [];
         $this->priceChangeVector = new Vector();
         $this->priceChangeVector->allocate(self::SPREAD_STEPS);
     }
 
-    protected function onDataReceived(string $data)
+    protected function onDataReceived(string $route, string $data)
     {
         if ($this->check($data) === true){
             $this->notify();
