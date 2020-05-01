@@ -6,15 +6,12 @@ namespace BBot\Indicators;
 
 use BBot\TCPSocketRoutes;
 use BBot\ZMQSubscriber;
-use Cassandra\Exception\DivideByZeroException;
-use DivisionByZeroError;
 use Ds\Vector;
 use OutOfRangeException;
 use SplObserver;
 use SplSubject;
 use UnderflowException;
 use function abs;
-use function var_dump;
 
 class PriceSpreadIndicator extends ZMQSubscriber implements SplSubject
 {
