@@ -9,7 +9,7 @@ use ZMQContext;
 use ZMQSocket;
 use function printf;
 
-abstract class ZMQSubscriber
+abstract class ZMQSubscriber implements CanSubscribeToZMQ
 {
     private $context;
     private $subscriber;

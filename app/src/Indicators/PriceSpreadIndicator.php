@@ -5,40 +5,23 @@ namespace BBot\Indicators;
 
 
 use BBot\TCPSocketRoutes;
-use BBot\ZMQSubscriber;
 use Ds\Vector;
 use OutOfRangeException;
-use SplObserver;
-use SplSubject;
 use UnderflowException;
 use function abs;
 
-class PriceSpreadIndicator extends ZMQSubscriber implements SplSubject
+class PriceSpreadIndicator extends AbstractIndicator
 {
 
     const SPREAD_STEPS = 10;
     const SPREAD_PERCENT_TO_ON = 0.04;
     private $priceChangeVector;
-    /**
-     * @var SplObserver[]
-     */
-    private $subscribers;
-    private $state;
 
     public function __construct(string $endpointstring, array $routes = [TCPSocketRoutes::ROUTE_BEST_BID_PRICE])
     {
         parent::__construct($endpointstring, $routes);
-        $this->state = false;
-        $this->subscribers = [];
         $this->priceChangeVector = new Vector();
         $this->priceChangeVector->allocate(self::SPREAD_STEPS);
-    }
-
-    protected function onDataReceived(string $route, string $data)
-    {
-        if ($this->check($data) === true){
-            $this->notify();
-        }
     }
 
     public function check($dataItem)
@@ -51,6 +34,7 @@ class PriceSpreadIndicator extends ZMQSubscriber implements SplSubject
         }catch (UnderflowException|OutOfRangeException $e){
             return false;
         }
+
         $firstElement = $this->priceChangeVector->shift();
         $spreadChangePercent = (float)abs(($lastElement - $firstElement)/($lastElement/100));
         printf('Спред %f%% %s',$spreadChangePercent, PHP_EOL);
@@ -59,32 +43,5 @@ class PriceSpreadIndicator extends ZMQSubscriber implements SplSubject
         return $this->isStateChange($toogledCondition);
     }
 
-    public function attach(SplObserver $observer)
-    {
-        $this->subscribers[spl_object_id($observer)] = true;
-    }
 
-    public function detach(SplObserver $observer)
-    {
-        unset($this->subscribers[spl_object_id($observer)]);
-    }
-
-    public function notify()
-    {
-        foreach ($this->subscribers as $subscriber)
-        {
-            $subscriber->update($this);
-        }
-    }
-
-    public function isStateChange(bool $state)
-    {
-        if($this->state !== $state){
-            $this->state = $state;
-            $stateMessage = $state ? 'Активирован' : 'Деактивирован';
-            printf('[%s] %s%s', self::class, $stateMessage, PHP_EOL);
-            return true;
-        }
-        return false;
-    }
 }
