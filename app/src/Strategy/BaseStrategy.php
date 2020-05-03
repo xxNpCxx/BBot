@@ -17,7 +17,7 @@ class BaseStrategy
      */
     private function processEnter()
     {
-        
+
     }
 
     /**
@@ -31,6 +31,6 @@ class BaseStrategy
     /**
      * За
      */
-    private function cancel
+    private function cancel(){}
 
 }
