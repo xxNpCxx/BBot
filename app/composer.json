@@ -14,6 +14,7 @@
         "hemiframe/php-websocket": "^1.7",
         "ratchet/pawl": "^0.3.4",
         "mongodb/mongodb": "^1.6",
-        "php-ds/php-ds": "^1.2"
+        "php-ds/php-ds": "^1.2",
+        "ccxt/ccxt": "^1.27"
     }
 }
