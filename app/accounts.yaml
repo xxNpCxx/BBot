@@ -1,0 +1,9 @@
+binance:
+  emails:
+    xxNpCxx@gmail.com:
+      apiKey: "DK2uZ1yqlyNyJZaBniYEoHFPKE6hDZkxO0TzSF1rHeON1k564AXq9PZaLHSJz5Bn"
+      secretKey: "hD4eBhEQfvRNEh5ul8kOiykm4aIjQynModH9DomODmlB5BdFP06dcvpv2KaRUswz"
+      strategies:
+        Test:
+          indicators:
+            - "PriceSpread"
