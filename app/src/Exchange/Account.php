@@ -9,5 +9,7 @@ namespace BBot\Exchange;
  */
 interface Account
 {
-
+    public function fetchBalance();
+    public function getBalance();
+    public function getName();
 }
