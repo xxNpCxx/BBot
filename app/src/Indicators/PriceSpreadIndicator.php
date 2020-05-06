@@ -17,7 +17,7 @@ class PriceSpreadIndicator extends AbstractIndicator
     const SPREAD_PERCENT_TO_ON = 0.04;
     private $priceChangeVector;
 
-    public function __construct(string $endpointstring, array $routes = [TCPSocketRoutes::ROUTE_BEST_BID_PRICE])
+    public function __construct(?string $endpointstring, ?array $routes = [TCPSocketRoutes::ROUTE_BEST_BID_PRICE])
     {
         parent::__construct($endpointstring, $routes);
         $this->priceChangeVector = new Vector();
