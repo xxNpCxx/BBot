@@ -7,11 +7,10 @@ namespace BBot\Indicators;
 use BBot\TCPSocketRoutes;
 use BBot\ZMQSubscriber;
 use SplObserver;
-use SplSubject;
 use function printf;
 use function spl_object_id;
 
-class AbstractIndicator extends ZMQSubscriber implements SplSubject, Indicator
+class AbstractIndicator extends ZMQSubscriber implements Indicator
 {
 
     /**
@@ -59,19 +58,29 @@ class AbstractIndicator extends ZMQSubscriber implements SplSubject, Indicator
 
     protected function onDataReceived(string $route, string $data)
     {
+        printf('.');
         if ($this->check($data) === true){
             $this->notify();
         }
     }
-    public function isStateChange(bool $state)
+    public function isStateChange(bool $state): bool
     {
         if($this->state !== $state){
-            $this->state = $state;
+            $this->setState($state);
             $stateMessage = $state ? 'Активирован' : 'Деактивирован';
             printf('[%s] %s%s', static::class, $stateMessage, PHP_EOL);
             return true;
         }
         return false;
+    }
+    public function getState(): bool
+    {
+        return $this->state;
+    }
+
+    public function setState(bool $newState)
+    {
+        $this->state = $newState;
     }
 
 }
