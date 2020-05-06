@@ -5,7 +5,12 @@ namespace BBot\Exchange;
 
 
 use BBot\Exchange\Binance\BinanceOrderClient;
+use function explode;
 use function sprintf;
+use function strpos;
+use function substr;
+use function ucfirst;
+use function var_dump;
 
 /**
  * Общая реализация для клиентов реальных торговых бирж
@@ -19,19 +24,18 @@ class AbstractClient implements Client
     /**
      * @var Account
      */
-    private $account;
+    protected $account;
     /**
      * @var string
      */
     private $exchangeName;
 
-    public function __construct(string $exchangeName, array $options = [])
+    public function __construct($exchangeName, $accountEmail)
     {
         //TODO Реализовать отдельный класс для проверки опций
-
         $this->setExchangeName($exchangeName);
         $this->setOrderClient();
-        $this->setAccount($options['account']);
+        $this->setAccount($accountEmail);
     }
 
     public function setOrderClient()
@@ -47,7 +51,7 @@ class AbstractClient implements Client
         }
     }
 
-    public function setAccount(array $options)
+    public function setAccount(string $email)
     {
 
         $accountClassName = sprintf(
@@ -55,22 +59,30 @@ class AbstractClient implements Client
             $this->exchangeName,
             $this->exchangeName
         );
-
-        if ($accountClassName instanceof Account){
-            $this->account = new $accountClassName();
-        }
-
-        $this->account->setApiKey($options['apiKey']);
-        $this->account->setSecretKey($options['secretKey']);
-        $this->account->setEmail($options['email']);
+        var_dump($accountClassName);
+        var_dump(Account::class);
+        var_dump($accountClassName instanceof Account);
+//        if ($accountClassName instanceof Account){
+            $this->account = new $accountClassName($email);
+//        }
     }
+
     public function getExchangeName():string
     {
         return $this->exchangeName;
     }
     public function setExchangeName(string $newExchangeName)
     {
-        $this->exchangeName = $newExchangeName;
+        $this->exchangeName = ucfirst($newExchangeName);
+    }
+
+    public function getStrategyName()
+    {
+        $classFullName = explode('\\', static::class);
+        $className = array_pop($classFullName);
+        $strategyName = substr($className,0,strpos($className,'Strategy'));
+
+        return $strategyName;
     }
 
 }
