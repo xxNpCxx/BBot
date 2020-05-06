@@ -9,4 +9,6 @@ use SplSubject;
 interface Indicator extends CanSubscribeToZMQ, SplSubject
 {
     public function check($dataItem);
+    public function isStateChange(bool $state): bool;
+    public function getState(): bool;
 }
