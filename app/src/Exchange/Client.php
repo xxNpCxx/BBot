@@ -6,5 +6,4 @@ namespace BBot\Exchange;
 
 interface Client
 {
-
 }
