@@ -37,7 +37,6 @@ class TestStrategy extends AbstractClient implements SplObserver
         $this->state = false;
         $indicators = $this->loadIndicators();
         $this->initializeIndicators($indicators);
-        var_dump($this->account->getBalance());
         $this->mainSymbol = $mainSymbol;
         $this->quoteSymbol = $quoteSymbol;
     }
@@ -73,7 +72,8 @@ class TestStrategy extends AbstractClient implements SplObserver
                 'bookTicker'
             );
             $this->indicators[$indicatorClass] = new $indicatorClass($endpoint);
-            end($this->indicators)->attach($this);
+            $this->indicators[$indicatorClass]->attach($this);
+            $this->indicators[$indicatorClass]->listen();
         }
     }
 
