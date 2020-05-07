@@ -41,7 +41,7 @@ abstract class ZMQSubscriber implements CanSubscribeToZMQ
 
     }
 
-    public function listen()
+    public function listen(): void
     {
         printf('Start listen [%s] route %s', $this->routes, PHP_EOL);
         while (true) {
