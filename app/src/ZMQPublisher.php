@@ -28,9 +28,6 @@ class ZMQPublisher
     /**
      * Отправляет по маршруту $route данные $data
      * $route нужен для фильтрации отправляемых данных.
-     * Если маршрут установлен в значение TCPSocketRoutes::ROUTE_ALL
-     * тогда данные отправляются в одном сообщении. Иначе сперва отправляется
-     * route затем данные.
      *
      * @param string $data
      * @param string $route
