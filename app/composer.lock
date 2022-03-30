@@ -4,8 +4,289 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a20a4c0c73b6d99d41a9037b4d0bcd64",
+    "content-hash": "5ad92bc509eff362ce2fd0593877082a",
     "packages": [
+        {
+            "name": "ccxt/ccxt",
+            "version": "1.77.49",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ccxt/ccxt.git",
+                "reference": "e683b7165be5d7c97ee6c325308d5935eda528bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ccxt/ccxt/zipball/e683b7165be5d7c97ee6c325308d5935eda528bc",
+                "reference": "e683b7165be5d7c97ee6c325308d5935eda528bc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-curl": "*",
+                "ext-gmp": "*",
+                "ext-iconv": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "pear/console_table": "1.3.1",
+                "php": ">=5.5",
+                "symfony/polyfill-mbstring": "^1.7"
+            },
+            "suggest": {
+                "clue/buzz-react": "Required for asynchronous API calls to exchanges with PHP",
+                "clue/http-proxy-react": "Required for using a proxy when doing asynchronous API calls to exchanges with PHP",
+                "react/event-loop": "Required for asynchronous API calls to exchanges with PHP",
+                "react/http": "Required for asynchronous API calls to exchanges with PHP",
+                "recoil/react": "Required for asynchronous API calls to exchanges with PHP",
+                "recoil/recoil": "Required for asynchronous API calls to exchanges with PHP"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ccxt.php"
+                ],
+                "psr-4": {
+                    "ccxt\\": "php/",
+                    "ccxt_async\\": "php/async/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Kroitor",
+                    "email": "igor.kroitor@gmail.com",
+                    "homepage": "https://github.com/kroitor",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Vitaly Gordon",
+                    "email": "rocket.mind@gmail.com",
+                    "homepage": "https://github.com/xpl",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Carlo Revelli",
+                    "email": "carlo.revelli@berkeley.edu",
+                    "homepage": "https://github.com/frosty00",
+                    "role": "Junior Developer"
+                }
+            ],
+            "description": "A JavaScript / Python / PHP cryptocurrency trading library with support for more than 90 bitcoin/altcoin exchanges",
+            "homepage": "https://github.com/ccxt/ccxt",
+            "keywords": [
+                "1BTCXE",
+                "1Broker",
+                "ACX",
+                "ANX",
+                "ANXPro",
+                "BL3P",
+                "BTC Markets",
+                "BTC Trade UA",
+                "BTCC",
+                "BTCChina",
+                "BTCExchange",
+                "BTCTrader",
+                "BTCTurk",
+                "BTCX",
+                "BX.in.th",
+                "Bit2C",
+                "BitBay",
+                "BitBays",
+                "BitMEX",
+                "BitMarket",
+                "Bitcoin.co.id",
+                "Bleutrade",
+                "BlinkTrade",
+                "BtcBox",
+                "Bter.com",
+                "C-CEX",
+                "CEX.IO",
+                "CHBTC",
+                "CNY",
+                "ChileBit",
+                "CoinMate",
+                "CoinSpot",
+                "Coinsecure",
+                "Crypto Capital",
+                "DOGE",
+                "EUR",
+                "EXMO",
+                "FYB-SE",
+                "FYB-SG",
+                "FoxBit",
+                "Gatecoin",
+                "Gemini",
+                "Huobi",
+                "HuobiPRO",
+                "LakeBTC",
+                "Liqui",
+                "LiveCoin",
+                "OKCoin",
+                "OKCoin.cn",
+                "OKCoin.com",
+                "OKEX",
+                "Paymium",
+                "Poloniex",
+                "QUOINE",
+                "Qryptos",
+                "QuadrigaCX",
+                "Southxchange",
+                "SurBitcoin",
+                "TheRockTrading",
+                "Tidex",
+                "USD",
+                "UrduBit",
+                "VBTC",
+                "Vaultoro",
+                "VirWoX",
+                "Wex",
+                "YoBit",
+                "Zaif",
+                "acx.io",
+                "algorithmic",
+                "algotrading",
+                "altcoin",
+                "altcoins",
+                "api",
+                "arbitrage",
+                "backtest",
+                "backtesting",
+                "binance",
+                "binance.com",
+                "bit2c.co.il",
+                "bitcoin",
+                "bitcoincoid",
+                "bitfinex",
+                "bitflyer",
+                "bitflyer.jp",
+                "bithumb",
+                "bithumb.com",
+                "bitlish",
+                "bitso",
+                "bitstamp",
+                "bittrex",
+                "bleutrade.com",
+                "bot",
+                "btc",
+                "btc-e",
+                "btc-trade.com.ua",
+                "btc-x",
+                "btcbox.co.jp",
+                "btce",
+                "btcexchange.ph",
+                "btcmarkets",
+                "btcmarkets.net",
+                "btctrader.com",
+                "btcturk.com",
+                "bter",
+                "ccex",
+                "cex",
+                "chilebit.net",
+                "coin",
+                "coincheck",
+                "coingi",
+                "coingi.com",
+                "coinmarketcap",
+                "coins",
+                "coinspot.com.au",
+                "crypto",
+                "crypto currency",
+                "crypto market",
+                "cryptocapital.co",
+                "cryptocurrency",
+                "currencies",
+                "currency",
+                "darkcoin",
+                "dash",
+                "digital currency",
+                "dogecoin",
+                "dsx",
+                "dsx.uk",
+                "e-commerce",
+                "etc",
+                "eth",
+                "ether",
+                "ethereum",
+                "exchange",
+                "exchanges",
+                "flowBTC",
+                "flowbtc.com",
+                "foxbit.exchange",
+                "framework",
+                "gdax",
+                "hitbtc",
+                "huobi.pro",
+                "independent reserve",
+                "independentreserve.com",
+                "invest",
+                "investing",
+                "investor",
+                "itBit",
+                "jubi.com",
+                "kraken",
+                "lakebtc.com",
+                "library",
+                "light",
+                "liqui.io",
+                "litecoin",
+                "ltc",
+                "luno",
+                "market",
+                "market data",
+                "markets",
+                "mercado",
+                "mercadobitcoin",
+                "mercadobitcoin.br",
+                "merchandise",
+                "merchant",
+                "minimal",
+                "mixcoins",
+                "mixcoins.com",
+                "nova",
+                "novaexchange",
+                "novaexchange.com",
+                "okex.com",
+                "order",
+                "order book",
+                "orderbook",
+                "price",
+                "price data",
+                "pricefeed",
+                "private",
+                "public",
+                "ripple",
+                "strategy",
+                "surbitcoin.com",
+                "tidex.com",
+                "toolkit",
+                "trade",
+                "trader",
+                "trading",
+                "urdubit.com",
+                "vbtc.exchange",
+                "vbtc.vn",
+                "volume",
+                "wex.nz",
+                "xBTCe",
+                "xbt",
+                "xbtce.com",
+                "xrp",
+                "yobit.net",
+                "yunbi",
+                "zec",
+                "zerocoin"
+            ],
+            "funding": [
+                {
+                    "url": "https://opencollective.com/ccxt",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2022-03-29T20:09:30+00:00"
+        },
         {
             "name": "evenement/evenement",
             "version": "v3.0.1",
@@ -51,16 +332,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.6.1",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -73,24 +354,24 @@
             },
             "require-dev": {
                 "ext-zlib": "*",
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.10"
             },
             "suggest": {
-                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -98,12 +379,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 }
             ],
@@ -118,7 +420,21 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-07-01T23:21:34+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "hemiframe/php-websocket",
@@ -197,12 +513,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "MongoDB\\": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "MongoDB\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -231,6 +547,112 @@
                 "persistence"
             ],
             "time": "2020-02-04T18:16:35+00:00"
+        },
+        {
+            "name": "pear/console_table",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pear/Console_Table.git",
+                "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pear/Console_Table/zipball/1930c11897ca61fd24b95f2f785e99e0f36dcdea",
+                "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "pear/Console_Color2": ">=0.1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Table.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Schneider",
+                    "homepage": "http://pear.php.net/user/yunosh"
+                },
+                {
+                    "name": "Tal Peer",
+                    "homepage": "http://pear.php.net/user/tal"
+                },
+                {
+                    "name": "Xavier Noguer",
+                    "homepage": "http://pear.php.net/user/xnoguer"
+                },
+                {
+                    "name": "Richard Heyes",
+                    "homepage": "http://pear.php.net/user/richard"
+                }
+            ],
+            "description": "Library that makes it easy to build console style tables.",
+            "homepage": "http://pear.php.net/package/Console_Table/",
+            "keywords": [
+                "console"
+            ],
+            "time": "2018-01-25T20:47:17+00:00"
+        },
+        {
+            "name": "php-ds/php-ds",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ds/polyfill.git",
+                "reference": "43d2df301a9e2017f67b8c11d94a5222f9c00fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/43d2df301a9e2017f67b8c11d94a5222f9c00fd1",
+                "reference": "43d2df301a9e2017f67b8c11d94a5222f9c00fd1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.0"
+            },
+            "provide": {
+                "ext-ds": "1.3.0"
+            },
+            "require-dev": {
+                "php-ds/tests": "^1.3"
+            },
+            "suggest": {
+                "ext-ds": "to improve performance and reduce memory usage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rudolf.theunissen@gmail.com"
+                }
+            ],
+            "keywords": [
+                "data structures",
+                "ds",
+                "php",
+                "polyfill"
+            ],
+            "time": "2022-03-09T20:39:30+00:00"
         },
         {
             "name": "psr/http-message",
@@ -350,12 +772,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Ratchet\\Client\\": "src"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "Ratchet\\Client\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -567,12 +989,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "React\\Promise\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "React\\Promise\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -615,12 +1037,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "React\\Promise\\Timer\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "React\\Promise\\Timer\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -737,6 +1159,301 @@
                 "writable"
             ],
             "time": "2019-01-01T16:15:09+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "6f981ee24cf69ee7ce9736146d1c57c2780598a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/6f981ee24cf69ee7ce9736146d1c57c2780598a8",
+                "reference": "6f981ee24cf69ee7ce9736146d1c57c2780598a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.5-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-12T14:48:14+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/30885182c981ab175d4d034db0f6f469898070ab",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-ctype": "*"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-20T20:35:02+00:00"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "0abb51d2f102e00a4eefcf46ba7fec406d245825"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/0abb51d2f102e00a4eefcf46ba7fec406d245825",
+                "reference": "0abb51d2f102e00a4eefcf46ba7fec406d245825",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-mbstring": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-11-30T18:21:41+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v5.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "e80f87d2c9495966768310fc531b487ce64237a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e80f87d2c9495966768310fc531b487ce64237a2",
+                "reference": "e80f87d2c9495966768310fc531b487ce64237a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "conflict": {
+                "symfony/console": "<5.3"
+            },
+            "require-dev": {
+                "symfony/console": "^5.3|^6.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-01-26T16:32:32+00:00"
         }
     ],
     "packages-dev": [],
